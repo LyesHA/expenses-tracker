@@ -53,6 +53,13 @@ namespace TrackYourExpensesApp
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
+            //OAUTH Google service to login
+            services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+            });
+
             services.AddMvc();
         }
 

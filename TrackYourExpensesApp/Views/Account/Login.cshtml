@@ -2,6 +2,7 @@
 @using System.Linq
 @using Microsoft.AspNetCore.Http
 @using Microsoft.AspNetCore.Http.Authentication
+
 @model LoginViewModel
 @inject SignInManager<ApplicationUser> SignInManager
 
@@ -69,7 +70,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a asp-area="" asp-controller="Account" asp-action="Register" class="nav-link nav-link-icon" >
+                            <a asp-area="" asp-controller="Account" asp-action="Register" class="nav-link nav-link-icon">
                                 <i class="ni ni-circle-08"></i>
                                 <span class="nav-link-inner--text">Register</span>
                             </a>
@@ -104,14 +105,37 @@
                         <div class="card-header bg-transparent pb-5">
                             <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
                             <div class="btn-wrapper text-center">
-                                <a href="#" class="btn btn-neutral btn-icon">
-                                    <span class="btn-inner--icon"><img src="~/nimg/icons/common/github.svg"></span>
-                                    <span class="btn-inner--text">Github</span>
-                                </a>
-                                <a href="#" class="btn btn-neutral btn-icon">
-                                    <span class="btn-inner--icon"><img src="~/nimg/icons/common/google.svg"></span>
-                                    <span class="btn-inner--text">Google</span>
-                                </a>
+                                @{
+                                    var loginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+                                    if (loginProviders.Count == 0)
+                                    {
+                                        <div>
+                                            <p>
+                                                There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                                                for details on setting up this ASP.NET application to support logging in via external services.
+                                            </p>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <form asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+                                            <div>
+                                                <p>
+                                                    @foreach (var provider in loginProviders)
+                                                    {
+                                                        if (provider.Name == "Google")
+                                                        {
+                                                            <button type="submit" class="btn btn-neutral btn-icon" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+                                                                <span class="btn-inner--icon"><img src="~/nimg/icons/common/google.svg"></span>
+                                                                <span class="btn-inner--text">@provider.Name</span>                                                       
+                                                            </button>
+                                                        }
+                                                    }
+                                                </p>
+                                            </div>
+                                        </form>
+                                    }
+                                }                              
                             </div>
                         </div>
                         <div class="card-body px-lg-5 py-lg-5">

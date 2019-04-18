@@ -36,9 +36,10 @@ namespace TrackYourExpensesApp.Controllers
 
             if(applicationUser.ImageUrl!=null) HttpContext.Session.SetString("UserImg", applicationUser.ImageUrl.ToString());
             else HttpContext.Session.SetString("UserImg", "default.png");
-            HttpContext.Session.SetString("UserImg", "default.png");
-            HttpContext.Session.SetString("Name", applicationUser.FirstName);
-            
+
+            if(applicationUser.FirstName != null) HttpContext.Session.SetString("Name", applicationUser.FirstName);
+            else HttpContext.Session.SetString("Name", "User");
+
 
             return View(category);
         }
