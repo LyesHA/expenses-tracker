@@ -1,0 +1,108 @@
+﻿@model IEnumerable<TrackYourExpensesApp.Models.Categories>
+    @{
+        Layout = "~/Views/Shared/_Layout.cshtml";
+        ViewData["Title"] = "Dashboard";
+    }
+    <!-- Table -->
+    @foreach (var item in Model)
+    {
+        <div class="row" style="margin-top:20px;">
+            <div class="col">
+                <div class="card shadow">
+                    <div class="card-header border-0">
+                        <h3 class="mb-0">@Html.DisplayFor(model => item.Name)</h3>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">
+                                        @Html.DisplayNameFor(model => model.Expenses.First().Title)
+                                    </th>
+                                    <th scope="col">
+                                        @Html.DisplayNameFor(model => model.Expenses.First().Amount)
+                                    </th>
+                                    <th scope="col">
+                                        @Html.DisplayNameFor(model => model.Expenses.First().TransactionDate)
+                                    </th>
+                                    <th scope="col">
+                                        Fixed Expense ? 
+                                    </th>
+                                    <th scope="col">
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                               @foreach (var ex in item.Expenses)
+                                {
+                                <tr>
+                                    <th scope="row">
+                                        <div class="media align-items-center">
+                                            <div class="media-body">
+                                                <span class="mb-0 text-sm">@Html.DisplayFor(modelItem => ex.Title)</span>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <td>
+                                        $@Html.DisplayFor(modelItem => ex.Amount) CAD
+                                    </td>
+                                    <td>
+                                            @Html.DisplayFor(modelItem=>ex.TransactionDate)
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            @if(ex is FixedExpenses)
+                                            {
+                                                <span>Yes</span>
+                                            }
+                                            else
+                                            {
+                                                <span>No</span>                                                
+                                            }
+                                        </div>
+                                    </td>
+
+
+                                    <td class="text-right">
+                                        <div class="dropdown">
+                                            <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+                                            @if(ex is FixedExpenses)
+                                            {
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                <a class="dropdown-item" asp-controller="FixedExpenses" asp-action="Details" asp-route-id="@ex.Id">
+                                                    <i class="fas fa-info-circle" style="color:orange;"></i>Details
+                                                </a>
+                                                <a class="dropdown-item" asp-controller="FixedExpenses" asp-action="Edit" asp-route-id="@ex.Id">
+                                                    <i class="fas fa-edit" style="color:dodgerblue;"></i>Edit
+                                                </a>
+                                                <a class="dropdown-item" asp-controller="FixedExpenses" asp-action="Delete" asp-route-id="@ex.Id">
+                                                    <i class="fas fa-trash" style="color:red;"></i>Delete
+                                                </a>
+                                            </div>
+                                            }
+                                            else
+                                            {
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                <a class="dropdown-item" asp-controller="VariableExpenses" asp-action="Edit" asp-route-id="@ex.Id">
+                                                    <i class="fas fa-edit" style="color:dodgerblue;"></i>Edit
+                                                </a>
+                                                <a class="dropdown-item" asp-controller="VariableExpenses" asp-action="Delete" asp-route-id="@ex.Id">
+                                                    <i class="fas fa-trash" style="color:red;"></i>Delete
+                                                </a>
+                                            </div>
+                                            }
+                                            
+                                        </div>
+                                    </td>
+                                 </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }   
+

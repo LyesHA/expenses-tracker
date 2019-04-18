@@ -1,0 +1,72 @@
+﻿@model IndexViewModel
+@{
+    Layout = "~/Views/Manage/_Layout.cshtml";
+
+    ViewData["Title"] = "Profile";
+    ViewData.AddActivePage(ManageNavPages.Index);
+}
+
+<div class="card-body">
+    @Html.Partial("_StatusMessage", Model.StatusMessage)
+
+    <form method="post">
+        <h6 class="heading-small text-muted mb-4">User information</h6>
+        <div class="pl-lg-4">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="form-control-label" for="input-username">Username</label>
+                        <input asp-for="Username" disabled type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username">
+                    </div>
+                </div>
+            </div>
+            <div class="row"> 
+                <div class="col-lg-8">
+                    @if (Model.IsEmailConfirmed)
+                    {
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-email">Email address</label>
+                            <input input asp-for="Email" type="email" id="input-email" class="form-control form-control-alternative" placeholder="jesse@example.com">
+                            <span class="input-group-addon" aria-hidden="true"><span class="glyphicon glyphicon-ok text-success"></span></span>
+                        </div>
+                    }
+                    else
+                    {
+                        <label class="form-control-label" for="input-email">Email address</label>
+                        <input asp-for="Email" class="form-control" />
+                        <button asp-action="SendVerificationEmail" class="btn btn-link">Send verification email</button>
+                    }
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">First name</label>
+                        <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="form-control-label" for="input-last-name">Last name</label>
+                        <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+
+                    <div class="form-group">
+                        <label asp-for="PhoneNumber" class="form-control-label" for="input-phone-number"></label>
+                        <input asp-for="PhoneNumber" id="input-phone-number" class="form-control form-control-alternative" placeholder="Phone number" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-4" />
+            <button type="submit" class="btn btn-default">Save</button>
+        </div>
+    </form> 
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

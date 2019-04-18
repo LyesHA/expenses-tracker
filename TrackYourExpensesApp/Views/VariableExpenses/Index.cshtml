@@ -1,0 +1,84 @@
+﻿@model IEnumerable<TrackYourExpensesApp.Models.Categories>
+
+@{
+    ViewData["Title"] = "Variable Expenses";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row mt-5">
+    <div class="col">
+        <div class="card bg-default shadow">
+            <div class="card-header bg-transparent border-0">
+                <h3 class="text-white mb-0">Variable Expenses</h3>
+            </div>
+            <div class="table-responsive">
+                <table class="table align-items-center table-dark table-flush">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">@Html.DisplayNameFor(model => model.Expenses.First().Title)</th>
+                            <th scope="col">@Html.DisplayNameFor(model => model.Expenses.First().TransactionDate)</th>
+                            <th scope="col">@Html.DisplayNameFor(model => model.Expenses.First().Amount)</th>
+                            <th scope="col">Category</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+
+                            foreach (var ex in item.Expenses)
+                            {
+                                if (ex is VariableExpenses)
+                                {
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="media align-items-center">
+                                                <div class="media-body">
+                                                    <span class="mb-0 text-sm">@Html.DisplayFor(modelItem => ex.Title)</span>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => ex.TransactionDate)
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-dot">
+                                                <i class="bg-success"></i> $@Html.DisplayFor(modelItem => ex.Amount) CAD
+
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                @item.Name
+                                            </div>
+                                        </td>
+                                        <td class="text-right">
+                                            <div class="dropdown">
+                                                <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                    <a class="dropdown-item" asp-controller="VariableExpenses" asp-action="Edit" asp-route-id="@ex.Id">
+                                                        <i class="fas fa-edit" style="color:dodgerblue;"></i>Edit
+                                                    </a>
+                                                    <a class="dropdown-item" asp-controller="VariableExpenses" asp-action="Delete" asp-route-id="@ex.Id">
+                                                        <i class="fas fa-trash" style="color:red;"></i>Delete
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        }
+
+                        <tr><td></td></tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <a class="btn btn-success" style="margin-top:20px;" asp-controller="VariableExpenses" asp-action="Create">Add</a>
+    </div>
+</div>

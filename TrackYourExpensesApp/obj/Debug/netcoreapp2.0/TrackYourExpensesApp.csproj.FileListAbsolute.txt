@@ -1,0 +1,12 @@
+C:\Users\Lyes\Desktop\Collège Lasalle\6e Session\Système d'information II\Projet\CodeSource\TrackYourExpensesApp\bin\Debug\netcoreapp2.0\TrackYourExpensesApp.deps.json
+C:\Users\Lyes\Desktop\Collège Lasalle\6e Session\Système d'information II\Projet\CodeSource\TrackYourExpensesApp\bin\Debug\netcoreapp2.0\TrackYourExpensesApp.runtimeconfig.json
+C:\Users\Lyes\Desktop\Collège Lasalle\6e Session\Système d'information II\Projet\CodeSource\TrackYourExpensesApp\bin\Debug\netcoreapp2.0\TrackYourExpensesApp.runtimeconfig.dev.json
+C:\Users\Lyes\Desktop\Collège Lasalle\6e Session\Système d'information II\Projet\CodeSource\TrackYourExpensesApp\bin\Debug\netcoreapp2.0\TrackYourExpensesApp.dll
+C:\Users\Lyes\Desktop\Collège Lasalle\6e Session\Système d'information II\Projet\CodeSource\TrackYourExpensesApp\bin\Debug\netcoreapp2.0\TrackYourExpensesApp.pdb
+C:\Users\Lyes\Desktop\Collège Lasalle\6e Session\Système d'information II\Projet\CodeSource\TrackYourExpensesApp\obj\Debug\netcoreapp2.0\TrackYourExpensesApp.csproj.CoreCompileInputs.cache
+C:\Users\Lyes\Desktop\Collège Lasalle\6e Session\Système d'information II\Projet\CodeSource\TrackYourExpensesApp\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Users\Lyes\Desktop\Collège Lasalle\6e Session\Système d'information II\Projet\CodeSource\TrackYourExpensesApp\obj\Debug\netcoreapp2.0\TrackYourExpensesApp.AssemblyInfoInputs.cache
+C:\Users\Lyes\Desktop\Collège Lasalle\6e Session\Système d'information II\Projet\CodeSource\TrackYourExpensesApp\obj\Debug\netcoreapp2.0\TrackYourExpensesApp.AssemblyInfo.cs
+C:\Users\Lyes\Desktop\Collège Lasalle\6e Session\Système d'information II\Projet\CodeSource\TrackYourExpensesApp\obj\Debug\netcoreapp2.0\TrackYourExpensesApp.dll
+C:\Users\Lyes\Desktop\Collège Lasalle\6e Session\Système d'information II\Projet\CodeSource\TrackYourExpensesApp\obj\Debug\netcoreapp2.0\TrackYourExpensesApp.pdb
+C:\Users\Lyes\Desktop\Collège Lasalle\6e Session\Système d'information II\Projet\CodeSource\TrackYourExpensesApp\obj\Debug\netcoreapp2.0\TrackYourExpensesApp.csprojAssemblyReference.cache

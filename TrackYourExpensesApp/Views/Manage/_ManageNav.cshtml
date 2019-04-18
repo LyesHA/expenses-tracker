@@ -1,0 +1,16 @@
+﻿@using TrackYourExpensesApp.Views.Manage
+@inject SignInManager<ApplicationUser> SignInManager
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+
+<ul class="nav nav-pills nav-stacked list-group">
+    <li class="@ManageNavPages.IndexNavClass(ViewContext) nav-item" style="margin-bottom:20px;"><a class="btn btn-success" asp-action="Index">Profile</a></li>
+    <li class="@ManageNavPages.ChangePasswordNavClass(ViewContext) nav-item" style="margin-bottom:20px;"><a class="btn btn-success" asp-action="ChangePassword">Password</a></li>
+    @if (hasExternalLogins)
+    {
+        <li class="@ManageNavPages.ExternalLoginsNavClass(ViewContext) nav-item" style="margin-bottom:20px;"><a class="btn btn-success" asp-action="ExternalLogins">External logins</a></li>
+    }
+    <li class="@ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext) nav-item" style="margin-bottom:20px;"><a class="btn btn-success" asp-action="TwoFactorAuthentication">Two-factor authentication</a></li>
+</ul>
+
